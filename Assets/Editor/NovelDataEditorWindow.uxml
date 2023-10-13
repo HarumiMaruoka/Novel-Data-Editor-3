@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Editor/NovelDataEditorWindow.uss?fileID=7433441132597879392&amp;guid=b79350528e3dd8c4cbb0ca0df94ad0c7&amp;type=3#NovelDataEditorWindow" />
+    <NovelDataEditor.SplitView fixed-pane-initial-dimension="300">
+        <ui:VisualElement name="left-panel">
+            <ui:Label text="Inspector" display-tooltip-when-elided="true" style="font-size: 14px; background-color: rgba(37, 37, 37, 255);" />
+            <NovelDataEditor.InspectorView style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="right-panel">
+            <ui:Label text="Graph View" display-tooltip-when-elided="true" style="font-size: 14px; background-color: rgba(37, 37, 37, 255);" />
+            <NovelDataEditor.NovelDataGraphView focusable="true" style="flex-grow: 1;" />
+        </ui:VisualElement>
+    </NovelDataEditor.SplitView>
+</ui:UXML>
