@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace NovelDataEditor
 {
-    public class NodeContainerCellView : VisualElement, INodeGraphView
+    public class NodeContainerCellView : VisualElement, INodeGraphViewElement
     {
         public NodeContainerCellView(Node node)
         {
@@ -14,9 +14,10 @@ namespace NovelDataEditor
 
             _input = Port.Create<Edge>(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(bool));
             _output = Port.Create<Edge>(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(bool));
-
             _input.portName = "";
             _output.portName = "";
+
+            this.style.flexDirection = new StyleEnum<FlexDirection>(FlexDirection.Row);
 
             this.Add(_input);
             this.Add(_output);

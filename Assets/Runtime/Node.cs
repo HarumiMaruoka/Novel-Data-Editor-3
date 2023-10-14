@@ -1,7 +1,6 @@
 // 日本語対応
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace NovelDataEditor
@@ -18,6 +17,6 @@ namespace NovelDataEditor
 
         public Node Child { get => _child; set => _child = value; }
         public IReadOnlyCollection<Animator> Animators => _animators;
-        public ViewData ViewData => _viewData??= new ViewData();
+        public ViewData ViewData => _viewData ??= new ViewData();
     }
 }

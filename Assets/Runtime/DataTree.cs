@@ -25,6 +25,7 @@ namespace NovelDataEditor
             var instance = Activator.CreateInstance(type) as INodeGraphElemtent;
             if (instance != null)
             {
+                _graphElemtents ??= new List<INodeGraphElemtent>();
                 _graphElemtents.Add(instance);
                 return instance;
             }

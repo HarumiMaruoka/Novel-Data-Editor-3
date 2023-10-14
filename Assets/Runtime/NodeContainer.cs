@@ -14,13 +14,15 @@ namespace NovelDataEditor
         [SerializeField]
         private ViewData _viewData;
 
-        public IReadOnlyList<Node> Nodes => _nodes;
+        public IReadOnlyList<Node> Nodes => _nodes ??= new List<Node>();
         public ViewData ViewData => _viewData ??= new ViewData();
         public Node Child => null;
 
         public Node CreateNode()
         {
-            throw new NotImplementedException();
+            var elemtent = new Node();
+            AddNode(elemtent);
+            return elemtent;
         }
 
         public Node AddNode(Node node)

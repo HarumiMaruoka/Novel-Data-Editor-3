@@ -14,6 +14,8 @@ namespace NovelDataEditor
 
         private DataTree _dataTree;
 
+        public event Action OnCreatedNodeView;
+
         public DataTree DataTree => _dataTree;
 
         public Action<INodeGraphElemtent> OnNodeSelected { get; set; }
@@ -62,10 +64,11 @@ namespace NovelDataEditor
             // Create Node view
             novelDataController.GraphElemtents.ForEach(n => CreateNodeView(n));
 
+            OnCreatedNodeView?.Invoke();
+
             // Create edges
             novelDataController.GraphElemtents.ForEach(n => CreateEdge(n));
         }
-
 
         public INodeGraphElemtent CreateNode(Type type)
         {
@@ -81,18 +84,18 @@ namespace NovelDataEditor
                 this.AddElement(nodeView);
                 return;
             }
-            var node = nodeGraphElemtent as Node;
-            if (node != null)
-            {
-                var nodeView = new NodeView(node);
-                this.AddElement(nodeView);
-                return;
-            }
             var nodeContainer = nodeGraphElemtent as NodeContainer;
             if (nodeContainer != null)
             {
                 var nodeContainerView = new NodeContainerView(this, nodeContainer);
                 this.AddElement(nodeContainerView);
+                return;
+            }
+            var node = nodeGraphElemtent as Node;
+            if (node != null)
+            {
+                var nodeView = new NodeView(node);
+                this.AddElement(nodeView);
                 return;
             }
         }
@@ -103,28 +106,28 @@ namespace NovelDataEditor
             var child = parent.Child;
             if (child == null) return; // 子がいなければ何もしない。
 
-            INodeGraphView parentView = FindNodeView(parent);
-            INodeGraphView childView = FindNodeView(child);
+            INodeGraphViewElement parentView = FindNodeView(parent);
+            INodeGraphViewElement childView = FindNodeView(child);
 
             var edge = parentView.Output.ConnectTo(childView.Input);
             AddElement(edge);
         }
 
-        private INodeGraphView FindNodeView(INodeGraphElemtent n)
+        private INodeGraphViewElement FindNodeView(INodeGraphElemtent n)
         {
             // 深さ2まで探索する。
             foreach (var elem in this.Query<VisualElement>().ToList())
             {
-                if (elem.viewDataKey == n.ViewData.GUID && elem is INodeGraphView)
+                if (elem.viewDataKey == n.ViewData.GUID && elem is INodeGraphViewElement)
                 {
-                    return elem as INodeGraphView;
+                    return elem as INodeGraphViewElement;
                 }
 
                 foreach (var item in elem.Query<VisualElement>().ToList())
                 {
-                    if (item.viewDataKey == n.ViewData.GUID && item is INodeGraphView)
+                    if (item.viewDataKey == n.ViewData.GUID && item is INodeGraphViewElement)
                     {
-                        return item as INodeGraphView;
+                        return item as INodeGraphViewElement;
                     }
                 }
             }
@@ -153,8 +156,8 @@ namespace NovelDataEditor
         {
             graphViewChange.edgesToCreate.ForEach(edge =>
             {
-                INodeGraphView parentView = edge.output.GetFirstAncestorOfType<INodeGraphView>();
-                INodeGraphView childView = edge.input.GetFirstAncestorOfType<INodeGraphView>();
+                INodeGraphViewElement parentView = edge.output.GetFirstAncestorOfType<INodeGraphViewElement>();
+                INodeGraphViewElement childView = edge.input.GetFirstAncestorOfType<INodeGraphViewElement>();
 
                 _dataTree.ApplyChild(parentView.Node, childView.Node);
             });
@@ -164,7 +167,7 @@ namespace NovelDataEditor
         {
             graphViewChange.elementsToRemove.ForEach(elem =>
             {
-                INodeGraphView nodeView = elem as INodeGraphView;
+                INodeGraphViewElement nodeView = elem as INodeGraphViewElement;
                 if (nodeView != null)
                 {
                     _dataTree.DeleteNode(nodeView.Node);
@@ -173,7 +176,7 @@ namespace NovelDataEditor
                 Edge edge = elem as Edge;
                 if (edge != null)
                 {
-                    INodeGraphView parentView = edge.output.node as INodeGraphView;
+                    INodeGraphViewElement parentView = edge.output.node as INodeGraphViewElement;
 
                     _dataTree.ClearChild(parentView.Node);
                 }

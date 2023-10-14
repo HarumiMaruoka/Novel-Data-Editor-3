@@ -1,5 +1,4 @@
 // 日本語対応
-using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -24,23 +23,64 @@ namespace NovelDataEditor
 
             _elementsViewContainer = this.Q("elements");
 
+            // Create Elements
             for (int i = 0; i < nodeContainer.Nodes.Count; i++)
             {
                 var cellView = CreateNodeView(nodeContainer.Nodes[i]);
                 _elementsViewContainer.Add(cellView);
             }
 
+            _graphView.OnCreatedNodeView += CreateEdges;
             // Add Node Button の処理をここ記述する。
             var button = _elementsViewContainer.Q<Button>();
             button.clicked += OnAddElementButtonClicked;
         }
 
+        private void CreateEdges()
+        {
+            foreach (var node in _nodeContainer.Nodes)
+            {
+                // 子と親を繋げる。
+                if (node == null) continue;
+                var child = node.Child;
+                if (child == null) continue; // 子がいなければ何もしない。
+
+                INodeGraphViewElement parentView = FindNodeView(node);
+                INodeGraphViewElement childView = FindNodeView(child);
+
+                var edge = parentView.Output.ConnectTo(childView.Input);
+                _graphView.AddElement(edge);
+            }
+
+            _graphView.OnCreatedNodeView -= CreateEdges;
+        }
+
+        private INodeGraphViewElement FindNodeView(INodeGraphElemtent n)
+        {
+            // 深さ2まで探索する。
+            foreach (var elem in _graphView.Query<VisualElement>().ToList())
+            {
+                if (elem.viewDataKey == n.ViewData.GUID && elem is INodeGraphViewElement)
+                {
+                    return elem as INodeGraphViewElement;
+                }
+
+                foreach (var item in elem.Query<VisualElement>().ToList())
+                {
+                    if (item.viewDataKey == n.ViewData.GUID && item is INodeGraphViewElement)
+                    {
+                        return item as INodeGraphViewElement;
+                    }
+                }
+            }
+
+            return null;
+        }
+
         private void OnAddElementButtonClicked() // ノード追加ボタンを押された時の処理
         {
             // ノードを生成し、ビューを生成する。
-            Node node = _graphView.CreateNode(typeof(Node)) as Node;
-            if (node == null) throw new ArgumentException(nameof(Node));
-
+            Node node = _nodeContainer.CreateNode();
             var nodeView = CreateNodeView(node);
             _elementsViewContainer.Add(nodeView);
         }

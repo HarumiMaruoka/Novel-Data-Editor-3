@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace NovelDataEditor
 {
-    public class NodeView : UnityEditor.Experimental.GraphView.Node, INodeGraphView
+    public class NodeView : UnityEditor.Experimental.GraphView.Node, INodeGraphViewElement
     {
         public NodeView(Node node)
         {

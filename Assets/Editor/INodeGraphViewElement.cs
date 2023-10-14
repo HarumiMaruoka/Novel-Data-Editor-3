@@ -4,7 +4,7 @@ using UnityEditor.Experimental.GraphView;
 
 namespace NovelDataEditor
 {
-    public interface INodeGraphView
+    public interface INodeGraphViewElement
     {
         Port Input { get; }
         Port Output { get; }
