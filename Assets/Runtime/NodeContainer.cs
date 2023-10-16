@@ -1,7 +1,6 @@
 // 日本語対応
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace NovelDataEditor
@@ -10,13 +9,13 @@ namespace NovelDataEditor
     public class NodeContainer : INodeGraphElemtent
     {
         [SerializeReference]
-        private List<Node> _nodes;
+        private List<INodeGraphElemtent> _nodes;
         [SerializeField]
         private ViewData _viewData;
 
-        public IReadOnlyList<Node> Nodes => _nodes ??= new List<Node>();
+        public IReadOnlyList<INodeGraphElemtent> Nodes => _nodes ??= new List<INodeGraphElemtent>();
         public ViewData ViewData => _viewData ??= new ViewData();
-        public Node Child => null;
+        public INodeGraphElemtent Child { get => null; set { } }
 
         public Node CreateNode()
         {
@@ -25,13 +24,13 @@ namespace NovelDataEditor
             return elemtent;
         }
 
-        public Node AddNode(Node node)
+        public INodeGraphElemtent AddNode(INodeGraphElemtent node)
         {
             _nodes.Add(node);
             return node;
         }
 
-        public bool RemoveNode(Node node)
+        public bool RemoveNode(INodeGraphElemtent node)
         {
             var result = _nodes.Remove(node);
             return result;

@@ -7,12 +7,13 @@ using UnityEngine;
 
 namespace NovelDataEditor
 {
-    public class AnimationController : MonoBehaviour
+    public class AnimationController
     {
         public async UniTask<bool> PlayAnimation(IEnumerable<Animator> animations, AnimationControlData controlData, CancellationToken token)
         {
             List<UniTask> animationTasks = new List<UniTask>();
 
+            // アニメーションを並列再生
             foreach (var anim in animations)
             {
                 animationTasks.Add(anim.PlayAnimationAsync(controlData, token));

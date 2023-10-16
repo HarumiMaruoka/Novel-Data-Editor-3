@@ -8,7 +8,8 @@ namespace NovelDataEditor
     {
         Port Input { get; }
         Port Output { get; }
-        Node Node { get; }
-        Action<INodeGraphElemtent> OnNodeSelected { get; set; }
+        INodeGraphElemtent Node { get; }
+        Action<INodeGraphViewElement> OnNodeSelected { get; set; }
+        void ApplyTitle(string str);
     }
 }

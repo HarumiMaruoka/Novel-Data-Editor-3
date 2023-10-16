@@ -7,11 +7,14 @@ namespace NovelDataEditor
 {
     public class DataTree : MonoBehaviour
     {
+        [SerializeField]
+        private string _title="Data Tree";
         [SerializeReference]
         private INodeGraphElemtent _rootNode;
         [SerializeReference]
         private List<INodeGraphElemtent> _graphElemtents;
 
+        public string Title => _title;
         public INodeGraphElemtent RootNode { get => _rootNode; set => _rootNode = value; }
         public List<INodeGraphElemtent> GraphElemtents => _graphElemtents ??= new List<INodeGraphElemtent>();
 
@@ -37,15 +40,16 @@ namespace NovelDataEditor
 
         public void DeleteNode(INodeGraphElemtent elemtent)
         {
+            if (elemtent == _rootNode) _rootNode = null;
             _graphElemtents.Remove(elemtent);
         }
 
-        public void ApplyChild(Node parent, Node child)
+        public void ApplyChild(INodeGraphElemtent parent, INodeGraphElemtent child)
         {
             parent.Child = child;
         }
 
-        public void ClearChild(Node parent)
+        public void ClearChild(INodeGraphElemtent parent)
         {
             parent.Child = null;
         }

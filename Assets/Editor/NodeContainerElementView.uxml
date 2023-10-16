@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="root" focusable="true">
+        <ui:Button display-tooltip-when-elided="true" name="main" style="flex-direction: row; justify-content: space-around; background-color: rgba(88, 88, 88, 0.64);">
+            <ui:VisualElement name="input" />
+            <ui:VisualElement name="elements" style="justify-content: center;" />
+            <ui:Button text="Remove" display-tooltip-when-elided="true" name="remove-button" />
+            <ui:VisualElement name="output" />
+        </ui:Button>
+    </ui:VisualElement>
+</ui:UXML>

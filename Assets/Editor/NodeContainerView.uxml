@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Editor/NodeContainerView.uss?fileID=7433441132597879392&amp;guid=2ae4fa84cf476484d8414bcc3dce6654&amp;type=3#NodeContainerView" />
-    <ui:VisualElement name="selection-border" />
-    <ui:VisualElement name="node-border">
+    <ui:VisualElement name="selection-border" focusable="true" />
+    <ui:VisualElement name="node-border" focusable="true">
         <ui:VisualElement name="contents">
             <ui:VisualElement name="top">
                 <ui:VisualElement name="title">

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace NovelDataEditor
@@ -18,7 +19,7 @@ namespace NovelDataEditor
 
         public DataTree DataTree => _dataTree;
 
-        public Action<INodeGraphElemtent> OnNodeSelected { get; set; }
+        public Action<INodeGraphViewElement> OnNodeSelected { get; set; }
 
         public NovelDataGraphView()
         {
@@ -35,13 +36,17 @@ namespace NovelDataEditor
 
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
+            // マウスの位置をビューポート座標に変換する
+            var viewTransform = contentViewContainer.transform.matrix.inverse;
+            var localMousePos = viewTransform.MultiplyPoint(evt.localMousePosition);
+
             var types = TypeCache.GetTypesDerivedFrom<INodeGraphElemtent>();
             foreach (var type in types)
             {
                 evt.menu.AppendAction($"[{type.BaseType.Name}] {type.Name}", _ =>
                 {
                     var graphElement = CreateNode(type);
-                    CreateNodeView(graphElement);
+                    CreateNodeView(graphElement, localMousePos);
                 });
             }
         }
@@ -70,31 +75,54 @@ namespace NovelDataEditor
             novelDataController.GraphElemtents.ForEach(n => CreateEdge(n));
         }
 
+        public void ClearView()
+        {
+            _dataTree = null;
+
+            graphViewChanged -= OnGraphViewChanged;
+            DeleteElements(graphElements);
+        }
+
         public INodeGraphElemtent CreateNode(Type type)
         {
             return _dataTree.CreateNode(type);
         }
 
-        private void CreateNodeView(INodeGraphElemtent nodeGraphElemtent)
+        private void CreateNodeView(INodeGraphElemtent nodeGraphElemtent, Vector2 mousePos = default)
         {
             var rootNode = nodeGraphElemtent as RootNode;
-            if (rootNode != null)
+            if (rootNode != null) // Root Node
             {
                 var nodeView = new NodeView(rootNode);
                 this.AddElement(nodeView);
                 return;
             }
             var nodeContainer = nodeGraphElemtent as NodeContainer;
-            if (nodeContainer != null)
+            if (nodeContainer != null) // Node Container Node
             {
                 var nodeContainerView = new NodeContainerView(this, nodeContainer);
+                if (mousePos != default)
+                {
+                    var pos = nodeContainerView.GetPosition();
+                    pos.yMin = mousePos.y;
+                    pos.xMin = mousePos.x;
+                    nodeContainerView.SetPosition(pos);
+                }
                 this.AddElement(nodeContainerView);
                 return;
             }
             var node = nodeGraphElemtent as Node;
-            if (node != null)
+            if (node != null) // Nomal Node
             {
                 var nodeView = new NodeView(node);
+                nodeView.OnNodeSelected = OnNodeSelected;
+                if (mousePos != default)
+                {
+                    var pos = nodeView.GetPosition();
+                    pos.yMin = mousePos.y;
+                    pos.xMin = mousePos.x;
+                    nodeView.SetPosition(pos);
+                }
                 this.AddElement(nodeView);
                 return;
             }
@@ -170,17 +198,28 @@ namespace NovelDataEditor
                 INodeGraphViewElement nodeView = elem as INodeGraphViewElement;
                 if (nodeView != null)
                 {
+                    var containerView = elem as NodeContainerView;
+                    if (containerView != null)
+                    {
+                        containerView.OnDeleteThisView();
+                    }
+
                     _dataTree.DeleteNode(nodeView.Node);
                 }
 
                 Edge edge = elem as Edge;
                 if (edge != null)
                 {
-                    INodeGraphViewElement parentView = edge.output.node as INodeGraphViewElement;
-
-                    _dataTree.ClearChild(parentView.Node);
+                    OnDeleteEdge(edge);
                 }
             });
+        }
+
+        public void OnDeleteEdge(Edge edge)
+        {
+            INodeGraphViewElement parentView = edge.output.GetFirstAncestorOfType<INodeGraphViewElement>();
+            if (parentView != null)
+                _dataTree.ClearChild(parentView.Node);
         }
 
         public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)

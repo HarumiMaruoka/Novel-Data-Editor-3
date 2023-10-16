@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &428413915
+--- !u!1 &186651888
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,166 +131,84 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 428413917}
-  - component: {fileID: 428413918}
+  - component: {fileID: 186651890}
+  - component: {fileID: 186651891}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &428413917
+--- !u!4 &186651890
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 428413915}
+  m_GameObject: {fileID: 186651888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &428413918
+--- !u!114 &186651891
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 428413915}
+  m_GameObject: {fileID: 186651888}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 830436710dbc0874ca47d31a39599410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _title: 
   _rootNode:
-    rid: 5811660342508650496
+    rid: 5811660354193719345
   _graphElemtents:
-  - rid: 5811660342508650496
-  - rid: 5811660342508650497
-  - rid: 5811660342508650498
-  - rid: 5811660342508650499
+  - rid: 5811660354193719343
+  - rid: 5811660354193719344
+  - rid: 5811660354193719345
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 5811660342508650496
+    - rid: 5811660354193719343
+      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _child:
+          rid: -2
+        _animators: []
+        _viewData:
+          _guid: ac5b8905327687f4f962aa15f7d2fa1e
+          _position: {x: 1040.1189, y: 392.82953}
+          _title: 
+    - rid: 5811660354193719344
+      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _child:
+          rid: -2
+        _animators: []
+        _viewData:
+          _guid: 74581a82c47d68b4db0c47989211af9b
+          _position: {x: 582.4, y: 550.592}
+          _title: 
+    - rid: 5811660354193719345
       type: {class: RootNode, ns: NovelDataEditor, asm: Assembly-CSharp}
       data:
         _child:
           rid: -2
         _animators: []
         _viewData:
-          _guid: 9127745dbce98da4cbbc7a781e7a05b3
-          _position: {x: -13.780132, y: 116.412674}
-    - rid: 5811660342508650497
-      type: {class: NodeContainer, ns: NovelDataEditor, asm: Assembly-CSharp}
-      data:
-        _nodes:
-        - rid: 5811660342508650500
-        - rid: 5811660342508650501
-        _viewData:
-          _guid: 8e5ef1fc0ad1f314e950dace6a9e024b
-          _position: {x: 252.40002, y: 102.40004}
-    - rid: 5811660342508650498
-      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
-      data:
-        _child:
-          rid: -2
-        _animators: []
-        _viewData:
-          _guid: f84b5812c31c73d48924635f37510572
-          _position: {x: 138.21986, y: 116.412674}
-    - rid: 5811660342508650499
-      type: {class: NodeContainer, ns: NovelDataEditor, asm: Assembly-CSharp}
-      data:
-        _nodes:
-        - rid: 5811660342508650502
-        - rid: 5811660342508650503
-        - rid: 5811660343077765120
-        - rid: 5811660343077765121
-        - rid: 5811660343077765122
-        - rid: 5811660343077765123
-        _viewData:
-          _guid: 26ae8d72a1512bf40810266e915f7454
-          _position: {x: 462.21985, y: 122.01268}
-    - rid: 5811660342508650500
-      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
-      data:
-        _child:
-          rid: 5811660342508650502
-        _animators: []
-        _viewData:
-          _guid: 032dd6a9d4c49ac44b376898d91f4db4
+          _guid: 0c34fdee4d5c292459b4830521ab48b7
           _position: {x: 0, y: 0}
-    - rid: 5811660342508650501
-      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
-      data:
-        _child:
-          rid: -2
-        _animators: []
-        _viewData:
-          _guid: 307126b3ae6dbb94bb7bcf85781c6bf0
-          _position: {x: 0, y: 0}
-    - rid: 5811660342508650502
-      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
-      data:
-        _child:
-          rid: -2
-        _animators: []
-        _viewData:
-          _guid: 812345e559be26146aa0623d24d82737
-          _position: {x: 0, y: 0}
-    - rid: 5811660342508650503
-      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
-      data:
-        _child:
-          rid: -2
-        _animators: []
-        _viewData:
-          _guid: 283ad422ab7e4f642bc0e201f93799e6
-          _position: {x: 0, y: 0}
-    - rid: 5811660343077765120
-      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
-      data:
-        _child:
-          rid: -2
-        _animators: []
-        _viewData:
-          _guid: 3baf3dc7d38df5c4185584cf41ec8fd6
-          _position: {x: 0, y: 0}
-    - rid: 5811660343077765121
-      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
-      data:
-        _child:
-          rid: -2
-        _animators: []
-        _viewData:
-          _guid: 27d3844223e3d5244a6f7c7448a293b4
-          _position: {x: 0, y: 0}
-    - rid: 5811660343077765122
-      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
-      data:
-        _child:
-          rid: -2
-        _animators: []
-        _viewData:
-          _guid: 567fb4d1dfa726343ad24a592a860e62
-          _position: {x: 0, y: 0}
-    - rid: 5811660343077765123
-      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
-      data:
-        _child:
-          rid: -2
-        _animators: []
-        _viewData:
-          _guid: b746a831ee10b6243a99cb56b6153d10
-          _position: {x: 0, y: 0}
+          _title: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,68 +327,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &607868812
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 607868814}
-  - component: {fileID: 607868813}
-  m_Layer: 0
-  m_Name: GameObject (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &607868813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 607868812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 830436710dbc0874ca47d31a39599410, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rootNode:
-    rid: 5811660343077765124
-  _graphElemtents:
-  - rid: 5811660343077765124
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 5811660343077765124
-      type: {class: RootNode, ns: NovelDataEditor, asm: Assembly-CSharp}
-      data:
-        _child:
-          rid: -2
-        _animators: []
-        _viewData:
-          _guid: 1df4ca3852d9d224daab6eee73bc0c2b
-          _position: {x: 0, y: 0}
---- !u!4 &607868814
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 607868812}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,4 +408,238 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1858687289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1858687291}
+  - component: {fileID: 1858687290}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1858687290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858687289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 830436710dbc0874ca47d31a39599410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _title: Data Tree
+  _rootNode:
+    rid: 5811660343077765154
+  _graphElemtents:
+  - rid: 5811660343077765154
+  - rid: 5811660348268740608
+  - rid: 5811660348268740609
+  - rid: 5811660348268740623
+  - rid: 5811660375889805312
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 5811660343077765154
+      type: {class: RootNode, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _child:
+          rid: 5811660348268740625
+        _animators: []
+        _viewData:
+          _guid: 536ea3909e9a5db43bc2793af6a828c5
+          _position: {x: -47.28, y: -157.992}
+          _title: 
+    - rid: 5811660348268740608
+      type: {class: NodeContainer, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _nodes:
+        - rid: 5811660348268740615
+        - rid: 5811660348268740616
+        - rid: 5811660348268740617
+        - rid: 5811660348268740618
+        _viewData:
+          _guid: 2402273a86d9bfc4589ba0cb3e9f31ef
+          _position: {x: 383.5901, y: -63.118767}
+          _title: 
+    - rid: 5811660348268740609
+      type: {class: NodeContainer, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _nodes:
+        - rid: 5811660348268740619
+        - rid: 5811660348268740620
+        - rid: 5811660348268740621
+        - rid: 5811660348268740622
+        _viewData:
+          _guid: b4ca53f551203154b959f9373b433c9b
+          _position: {x: 589.90015, y: 18.579992}
+          _title: 
+    - rid: 5811660348268740615
+      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _child:
+          rid: 5811660348268740619
+        _animators: []
+        _viewData:
+          _guid: e3d4ac2bf18d52147afcada3d2f45172
+          _position: {x: 0, y: 0}
+          _title: 
+    - rid: 5811660348268740616
+      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _child:
+          rid: 5811660348268740622
+        _animators: []
+        _viewData:
+          _guid: c8337cb4c2fb69343b3d98db23877d15
+          _position: {x: 0, y: 0}
+          _title: 
+    - rid: 5811660348268740617
+      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _child:
+          rid: -2
+        _animators: []
+        _viewData:
+          _guid: 5095f9f7c7b6cb64b9323700f5bb39e6
+          _position: {x: 0, y: 0}
+          _title: 
+    - rid: 5811660348268740618
+      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _child:
+          rid: -2
+        _animators: []
+        _viewData:
+          _guid: dcf866087459b1740b2976e2a6c9b931
+          _position: {x: 0, y: 0}
+          _title: 
+    - rid: 5811660348268740619
+      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _child:
+          rid: -2
+        _animators: []
+        _viewData:
+          _guid: e28fd4bcefe420c428f73aef5be630bf
+          _position: {x: 0, y: 0}
+          _title: 
+    - rid: 5811660348268740620
+      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _child:
+          rid: -2
+        _animators: []
+        _viewData:
+          _guid: 86f32a98682c2eb44b69abc4f139edfa
+          _position: {x: 0, y: 0}
+          _title: 
+    - rid: 5811660348268740621
+      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _child:
+          rid: -2
+        _animators: []
+        _viewData:
+          _guid: cc4d7e0081879b64aa40986a55ac589e
+          _position: {x: 0, y: 0}
+          _title: 
+    - rid: 5811660348268740622
+      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _child:
+          rid: -2
+        _animators: []
+        _viewData:
+          _guid: 665af809f7fe56c488bc53a72e81099a
+          _position: {x: 0, y: 0}
+          _title: 
+    - rid: 5811660348268740623
+      type: {class: NodeContainer, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _nodes:
+        - rid: 5811660348268740625
+        - rid: 5811660348268740627
+        - rid: 5811660348268740628
+        - rid: 5811660348268740629
+        _viewData:
+          _guid: 3ba0788f976a87243abec02495ea2034
+          _position: {x: 166.75, y: -17.600012}
+          _title: 
+    - rid: 5811660348268740625
+      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _child:
+          rid: -2
+        _animators: []
+        _viewData:
+          _guid: a2485b8600e09f34bb5f56287b36ab17
+          _position: {x: 0, y: 0}
+          _title: aaa
+    - rid: 5811660348268740627
+      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _child:
+          rid: -2
+        _animators: []
+        _viewData:
+          _guid: 2a95a5ccb3a22ae4bbeeff32249ae033
+          _position: {x: 0, y: 0}
+          _title: 
+    - rid: 5811660348268740628
+      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _child:
+          rid: -2
+        _animators: []
+        _viewData:
+          _guid: 9695710efbf2f51428968ed0d9f31177
+          _position: {x: 0, y: 0}
+          _title: 
+    - rid: 5811660348268740629
+      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _child:
+          rid: -2
+        _animators: []
+        _viewData:
+          _guid: 4759d374dc5ff1f4280f5e05964d8423
+          _position: {x: 0, y: 0}
+          _title: 
+    - rid: 5811660375889805312
+      type: {class: Node, ns: NovelDataEditor, asm: Assembly-CSharp}
+      data:
+        _child:
+          rid: -2
+        _animators: []
+        _viewData:
+          _guid: 6ee23ce1430726c4e98b5ef0f09025a2
+          _position: {x: 316.8, y: 230.4}
+          _title: aaa
+--- !u!4 &1858687291
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858687289}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

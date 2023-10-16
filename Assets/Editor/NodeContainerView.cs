@@ -1,14 +1,23 @@
 // 日本語対応
+using System;
+using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace NovelDataEditor
 {
-    public class NodeContainerView : UnityEditor.Experimental.GraphView.Node
+    public class NodeContainerView : UnityEditor.Experimental.GraphView.Node, INodeGraphViewElement
     {
         private NodeContainer _nodeContainer = null;
         private NovelDataGraphView _graphView = null;
         private VisualElement _elementsViewContainer = null;
+
+        public Port Input => null;
+        public Port Output => null;
+        public INodeGraphElemtent Node => _nodeContainer;
+        public NodeContainer NodeContainer => _nodeContainer;
+        public Action<INodeGraphViewElement> OnNodeSelected { get => null; set { } }
 
         public NodeContainerView(NovelDataGraphView graphView, NodeContainer nodeContainer) : base("Assets/Editor/NodeContainerView.uxml")
         {
@@ -85,21 +94,40 @@ namespace NovelDataEditor
             _elementsViewContainer.Add(nodeView);
         }
 
-        public void OnRemoveElementButtonClicked(NodeContainerCellView removeObj) // （このContainerが所有する）ノード削除ボタンを押された時の処理
+        public void OnRemoveElementButtonClicked(NodeContainerElementView removeObj) // （このContainerが所有する）ノード削除ボタンを押された時の処理
         {
             // ノードとビューを削除する。
+            // エッジがあればエッジを削除する。
+            var inputConnections = removeObj.Input.connections;
+            var removeEdges = new HashSet<Edge>();
+            foreach (var edge in inputConnections)
+            {
+                removeEdges.Add(edge);
+            }
+            var outputConnections = removeObj.Output.connections;
+            foreach (var edge in outputConnections)
+            {
+                removeEdges.Add(edge);
+            }
+            foreach (var edge in removeEdges)
+            {
+                _graphView.OnDeleteEdge(edge);
+                edge.parent.Remove(edge);
+            }
+
             _nodeContainer.RemoveNode(removeObj.Node); // ノードの削除。
-            DeleteNodeView(removeObj); // ビューの削除。
+            DeleteElementView(removeObj); // ビューの削除。
         }
 
-        private NodeContainerCellView CreateNodeView(Node node)
+        private NodeContainerElementView CreateNodeView(INodeGraphElemtent node)
         {
-            var nodeView = new NodeContainerCellView(node);
+            var nodeView = new NodeContainerElementView(_nodeContainer, node);
             nodeView.OnRemoveButtonClicked += OnRemoveElementButtonClicked;
+            nodeView.OnNodeSelected = _graphView.OnNodeSelected;
             return nodeView;
         }
 
-        private void DeleteNodeView(NodeContainerCellView nodeView)
+        private void DeleteElementView(NodeContainerElementView nodeView)
         {
             _elementsViewContainer.Remove(nodeView);
         }
@@ -108,6 +136,19 @@ namespace NovelDataEditor
         {
             base.SetPosition(newPos);
             _nodeContainer.ViewData.Position = new Vector2(newPos.x, newPos.y);
+        }
+
+        public void OnDeleteThisView()
+        {
+            this.Query<NodeContainerElementView>().ForEach(n =>
+            {
+                OnRemoveElementButtonClicked(n);
+            });
+        }
+
+        public void ApplyTitle(string str)
+        {
+            _nodeContainer.ViewData.Title = str;
         }
     }
 }

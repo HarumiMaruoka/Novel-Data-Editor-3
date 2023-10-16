@@ -15,8 +15,8 @@ namespace NovelDataEditor
         [SerializeField]
         private ViewData _viewData;
 
-        public Node Child { get => _child; set => _child = value; }
         public IReadOnlyCollection<Animator> Animators => _animators;
         public ViewData ViewData => _viewData ??= new ViewData();
+        public INodeGraphElemtent Child { get => _child; set => _child = value as Node; }
     }
 }

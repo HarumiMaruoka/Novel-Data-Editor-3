@@ -16,7 +16,7 @@ namespace NovelDataEditor
             style.top = _node.ViewData.Position.y;
 
             if (node is RootNode) this.title = "Root Node";
-            else this.title = "Node";
+            else this.title = _node.ViewData.Title;
 
             if (node is not RootNode) // Root nodeに Input portは必要ない。
             {
@@ -33,17 +33,30 @@ namespace NovelDataEditor
         private Node _node;
         private Port _input;
         private Port _output;
-        private Action<INodeGraphElemtent> _onNodeSelected;
+        private Action<INodeGraphViewElement> _onNodeSelected;
 
         public Port Input => _input;
         public Port Output => _output;
-        public Node Node => _node;
-        public Action<INodeGraphElemtent> OnNodeSelected { get => _onNodeSelected; set => _onNodeSelected = value; }
+        public Action<INodeGraphViewElement> OnNodeSelected { get => _onNodeSelected; set => _onNodeSelected = value; }
+        public INodeGraphElemtent Node => _node;
 
         public override void SetPosition(Rect newPos)
         {
             base.SetPosition(newPos);
             _node.ViewData.Position = new Vector2(newPos.x, newPos.y);
+        }
+
+        public override void OnSelected()
+        {
+            base.OnSelected();
+
+            _onNodeSelected?.Invoke(this);
+        }
+
+        public void ApplyTitle(string str)
+        {
+            _node.ViewData.Title = str;
+            title = str;
         }
     }
 }
